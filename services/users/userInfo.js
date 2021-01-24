@@ -1,9 +1,9 @@
-const errorResponse = require('../../helpers/apiError');
 const UserModel = require('../../models/user');
+const errorResponse = require('../../helpers/apiError');
 
 /**
  * @param {UserData} data
- * @summary get current user info
+ * @summary creates new users docs and generate token
  */
 function userInfo(data) {
   const locals = {
@@ -12,7 +12,7 @@ function userInfo(data) {
 
   async function servicePromiseExecutor(resolve, reject) {
     try {
-      const user = await UserModel.findById(data.userId);
+      const user = await UserModel.findById(data.user.id);
 
       if (!user) {
         errorResponse.throwError('user info does not exist');
@@ -22,14 +22,14 @@ function userInfo(data) {
         _id, email, username, fullname,
       } = user;
 
-      locals.userInfo = {
+      locals.user = {
         _id,
         email,
         username,
         fullname,
       };
 
-      resolve(locals.userInfo);
+      resolve(locals.user);
     } catch (e) {
       errorResponse.handleError(reject, e);
     }

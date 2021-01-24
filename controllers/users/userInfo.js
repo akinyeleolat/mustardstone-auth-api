@@ -4,8 +4,7 @@ const userInfoService = require('../../services/users/userInfo');
 
 async function getUserInfo(req, res) {
   try {
-    const result = await userInfoService(req);
-    console.log('ctrl', result);
+    const result = await userInfoService(req.user);
     new SuccessResponse('user information retrieved', result, 200).send(res);
   } catch (error) {
     new BadRequestResponse(error.message).send(res);

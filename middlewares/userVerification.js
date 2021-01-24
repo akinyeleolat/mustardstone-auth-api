@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const { decodeToken } = require('../helpers/authHelpers');
 
 /**
@@ -7,22 +8,21 @@ const { decodeToken } = require('../helpers/authHelpers');
  * @param {*} next
  * @returns {*} null
  */
-const verifyUser = async (req, res, next) => {
+function verifyUser(req, res, next) {
   let token;
   if (!req.header('authorization')) {
     return res.status(401).json({ status: 'error', message: 'Auth Error' });
   }
-  const authHeader = req.header('authorization');
-  if (authHeader.startsWith('Bearer ')) {
-    token = authHeader.substring(7, authHeader.length);
-    const { id } = decodeToken(token);
-    if (id) {
-      req.userId = id;
-      next();
+  try {
+    const authHeader = req.header('authorization');
+    if (authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7, authHeader.length);
     }
-  } else {
+    req.user = decodeToken(token);
+    next();
+  } catch (error) {
     const err = new Error('Unauthorized');
     return res.status(401).json({ status: 'error', message: err.message });
   }
-};
+}
 module.exports = verifyUser;
