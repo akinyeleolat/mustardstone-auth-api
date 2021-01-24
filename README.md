@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.com/JohnMadakin/getir-case-study-api.svg?branch=main)](https://travis-ci.com/JohnMadakin/getir-case-study-api)
 
-#Getir Challenge
+#MustardStone Challenge
 ## Description
-Solution to Getir backend task.
+Solution to MustardStone backend task.
 API url: https://mustardstone-auth-api.herokuapp.com
 
 
