@@ -15,7 +15,7 @@ const hashPassword = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(
  * @param {string} secret
  * @return {string} token
  */
-const tokenGenerator = (id, email, tokenExpiryDate = '1h', secret = 'secret') => {
+const tokenGenerator = (id, email, tokenExpiryDate = '1h', secret = envConfig.secret) => {
   const payload = { id };
   if (email) {
     payload.email = email;
