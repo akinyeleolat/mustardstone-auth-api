@@ -17,7 +17,7 @@ API url: https://mustardstone-auth-api.herokuapp.com
 
 ## Documentation
 
-https://documenter.getpostman.com/view/4919621/TVt17jGK
+https://documenter.getpostman.com/view/5081938/TW6tMqHd
 
 ## Setup
 
