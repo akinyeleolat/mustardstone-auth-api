@@ -3,30 +3,33 @@ const errorResponse = require('../../helpers/apiError');
 
 /**
  * @param {UserData} data
- * @summary creates new users docs and generate token
+ * @summary get users info
  */
-function userInfo(data) {
+function userInfoService(data) {
   const locals = {
     data,
   };
 
   async function servicePromiseExecutor(resolve, reject) {
     try {
-      const user = await UserModel.findById(data.user.id);
+      const { user } = locals.data;
+      const { id } = user;
+      const userInfo = await UserModel.findById(id);
 
-      if (!user) {
+      if (!userInfo) {
         errorResponse.throwError('user info does not exist');
       }
 
       const {
-        _id, email, username, fullname,
-      } = user;
+        _id, email, username, fullname, createdAt,
+      } = userInfo;
 
       locals.user = {
         _id,
         email,
         username,
         fullname,
+        createdAt,
       };
 
       resolve(locals.user);
@@ -36,4 +39,4 @@ function userInfo(data) {
   }
   return new Promise(servicePromiseExecutor);
 }
-module.exports = userInfo;
+module.exports = userInfoService;
