@@ -21,7 +21,7 @@ function userInfoService(data) {
       }
 
       const {
-        _id, email, username, fullname, createdAt,
+        _id, email, username, fullname, bio, createdAt,
       } = userInfo;
 
       locals.user = {
@@ -29,6 +29,7 @@ function userInfoService(data) {
         email,
         username,
         fullname,
+        bio,
         createdAt,
       };
 
