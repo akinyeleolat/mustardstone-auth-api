@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/JohnMadakin/getir-case-study-api.svg?branch=main)](https://travis-ci.com/JohnMadakin/getir-case-study-api)
 
 #MustardStone Challenge
 ## Description
